@@ -1,0 +1,33 @@
+Attention Is All You Need: A Summary
+
+The Transformer architecture, introduced in the landmark 2017 paper "Attention Is All You Need" by Vaswani et al., revolutionized the field of natural language processing and deep learning. Unlike recurrent neural networks (RNNs) and long short-term memory networks (LSTMs), the Transformer relies entirely on attention mechanisms to draw global dependencies between input and output sequences.
+
+Key Contributions
+
+The paper introduces the Transformer, a sequence-to-sequence model that uses self-attention to process entire input sequences simultaneously rather than step-by-step. This design enables significantly greater parallelization during training, which reduces training time substantially compared to RNN-based architectures.
+
+Architecture Overview
+
+The Transformer consists of an encoder and a decoder. The encoder processes the input sequence, while the decoder generates the output sequence one token at a time. Both encoder and decoder are built from stacked layers, where each layer contains two main sub-components: a multi-head attention mechanism and a position-wise fully connected feed-forward network.
+
+Multi-Head Attention
+
+Multi-head attention allows the model to attend to information from different representation subspaces at different positions. Given queries Q, keys K, and values V, the attention function computes a weighted sum of the values, where the weights are determined by the compatibility of queries with keys. Scaled dot-product attention is the core operation here.
+
+Positional Encoding
+
+Since the Transformer contains no recurrence or convolution, it must use positional encodings to inject information about the relative or absolute position of tokens in the sequence. The authors use sine and cosine functions of different frequencies for this purpose.
+
+Results and Impact
+
+The Transformer achieved state-of-the-art results on machine translation benchmarks (WMT 2014 English-German and English-French) with significantly less training time. It forms the backbone of modern language models including BERT, GPT, T5, and countless others.
+
+The model demonstrates that attention mechanisms alone, without recurrence, are sufficient to achieve or exceed the performance of RNN-based models. This insight opened the door to the current era of large language models (LLMs).
+
+Self-Attention and Language Understanding
+
+Self-attention enables each token in a sequence to look at all other tokens, capturing long-range dependencies that RNNs struggle with. This property is particularly useful for understanding complex sentence structures, resolving coreferences, and modeling semantic relationships between distant words.
+
+Conclusion
+
+The Transformer fundamentally changed how we approach sequence modeling tasks. Its success across translation, summarization, and generation tasks set the foundation for the pre-training and fine-tuning paradigm that dominates modern NLP research.
