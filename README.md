@@ -1,14 +1,7 @@
 <p align="center">
-  <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="docs/assets/logo-dark.svg">
-      <source media="(prefers-color-scheme: light)" srcset="docs/assets/logo-light.svg">
-      <img height="100" alt="Endee" src="docs/assets/logo-dark.svg">
-  </picture>
+    <b>High-performance open-source vector database for AI search, RAG, semantic search, and hybrid retrieval. (Custom Fork)</b>
 </p>
 
-<p align="center">
-    <b>High-performance open-source vector database for AI search, RAG, semantic search, and hybrid retrieval.</b>
-</p>
 
 <p align="center">
     <a href="./docs/getting-started.md"><img src="https://img.shields.io/badge/Quick_Start-Local_Setup-success?style=flat-square" alt="Quick Start"></a>
@@ -24,7 +17,7 @@
 <strong><a href="./docs/getting-started.md">Quick Start</a> • <a href="#why-endee">Why Endee</a> • <a href="#use-cases">Use Cases</a> • <a href="#features">Features</a> • <a href="#api-and-clients">API and Clients</a> • <a href="#docs-and-links">Docs</a> • <a href="#community-and-contact">Contact</a></strong>
 </p>
 
-# Endee: Open-Source Vector Database for AI Search
+# Open-Source Vector Database for AI Search
 
 **Endee** is a high-performance open-source vector database built for AI search and retrieval workloads. It is designed for teams building **RAG pipelines**, **semantic search**, **hybrid search**, recommendation systems, and filtered vector retrieval APIs that need production-oriented performance and control.
 
