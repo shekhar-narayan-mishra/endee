@@ -1,0 +1,29 @@
+# ─── Core Framework ───────────────────────────────────────────────────────────
+fastapi==0.115.12
+uvicorn[standard]==0.34.0
+gunicorn==23.0.0            # production WSGI server (Render uses this)
+python-multipart==0.0.20
+pydantic==2.11.1
+
+# ─── Vector Database ──────────────────────────────────────────────────────────
+endee==0.1.5
+
+# ─── Embedding Model (local, no API key required) ─────────────────────────────
+sentence-transformers==3.4.1
+torch==2.6.0                # CPU-only; for GPU: pip install torch --index-url https://...
+transformers==4.50.1
+
+# ─── Document Loading ─────────────────────────────────────────────────────────
+PyMuPDF==1.25.4             # PDF parsing (provides the `fitz` module)
+
+# ─── LLM Providers ────────────────────────────────────────────────────────────
+google-generativeai==0.8.4  # Gemini API (default)
+openai==1.70.0              # OpenAI API (optional)
+
+# ─── Frontend ─────────────────────────────────────────────────────────────────
+gradio==5.23.3
+httpx==0.28.1
+
+# ─── Utilities ────────────────────────────────────────────────────────────────
+python-dotenv==1.1.0
+numpy==1.26.4
