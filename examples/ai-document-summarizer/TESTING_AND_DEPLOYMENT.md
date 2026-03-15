@@ -203,6 +203,7 @@ git push origin main
 | Field | Value |
 |-------|-------|
 | Name | `ai-doc-search` |
+| Root Directory | `examples/ai-document-summarizer` |
 | Runtime | `Python` |
 | Build Command | `pip install --upgrade pip && pip install -r requirements.txt` |
 | Start Command | `uvicorn main:app --host 0.0.0.0 --port $PORT` |

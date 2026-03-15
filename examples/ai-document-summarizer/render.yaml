@@ -16,6 +16,7 @@ services:
   - type: web
     name: ai-doc-search
     runtime: python
+    rootDir: examples/ai-document-summarizer
     region: singapore       # change to: oregon, frankfurt, ohio, virginia
     plan: free              # upgrade to starter for always-on
 
