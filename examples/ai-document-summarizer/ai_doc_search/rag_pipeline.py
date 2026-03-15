@@ -32,6 +32,7 @@ load_dotenv()
 LLM_PROVIDER: str = os.getenv("LLM_PROVIDER", "gemini").lower()
 GEMINI_API_KEY: Optional[str] = os.getenv("GEMINI_API_KEY")
 OPENAI_API_KEY: Optional[str] = os.getenv("OPENAI_API_KEY")
+GROQ_API_KEY: Optional[str] = os.getenv("GROQ_API_KEY")
 
 
 def _call_gemini(prompt: str) -> str:
@@ -73,10 +74,38 @@ def _call_openai(prompt: str) -> str:
     return response.choices[0].message.content
 
 
+def _call_groq(prompt: str) -> str:
+    """Generate text using the Groq API."""
+    from groq import Groq
+
+    if not GROQ_API_KEY:
+        raise ValueError("GROQ_API_KEY environment variable is not set.")
+
+    client = Groq(api_key=GROQ_API_KEY)
+    response = client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
+        messages=[
+            {
+                "role": "system",
+                "content": (
+                    "You are a helpful AI assistant specialised in document analysis. "
+                    "Answer questions accurately based solely on the provided context."
+                ),
+            },
+            {"role": "user", "content": prompt},
+        ],
+        temperature=0.3,
+        max_tokens=1024,
+    )
+    return response.choices[0].message.content
+
+
 def _call_llm(prompt: str) -> str:
     """Route to the configured LLM provider."""
     if LLM_PROVIDER == "openai":
         return _call_openai(prompt)
+    elif LLM_PROVIDER == "groq":
+        return _call_groq(prompt)
     return _call_gemini(prompt)
 
 

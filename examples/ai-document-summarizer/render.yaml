@@ -32,10 +32,13 @@ services:
     envVars:
       # ── LLM ────────────────────────────────────────────────────────────────
       - key: LLM_PROVIDER
-        value: gemini            # or: openai
+        value: groq              # Defaults to groq
+
+      - key: GROQ_API_KEY
+        sync: false              # you will enter this in the Render dashboard
 
       - key: GEMINI_API_KEY
-        sync: false              # you will enter this in the Render dashboard
+        sync: false              # only needed if LLM_PROVIDER=gemini
 
       - key: OPENAI_API_KEY
         sync: false              # only needed if LLM_PROVIDER=openai
