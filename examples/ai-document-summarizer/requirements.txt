@@ -9,7 +9,7 @@ pydantic==2.11.1
 
 # ─── Embedding Model (local, no API key required) ─────────────────────────────
 sentence-transformers==3.4.1
-torch==2.6.0                # CPU-only; for GPU: pip install torch --index-url https://...
+torch                # CPU-only; for GPU: pip install torch --index-url https://...
 transformers==4.50.1
 
 # ─── Document Loading ─────────────────────────────────────────────────────────
