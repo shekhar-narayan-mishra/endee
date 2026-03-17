@@ -1,0 +1,56 @@
+# Render Blueprint Configuration
+# https://render.com/docs/blueprint-spec
+# This deploys the 3 components of the AI Document Summarizer project.
+
+services:
+  # 1. Endee Vector Database
+  # A private service running via Docker. Only the backend can connect to it.
+  - type: pserv
+    name: endee-vector-db
+    env: docker
+    dockerfilePath: Dockerfile
+    # Render overrides the CMD by default if you use a start command, 
+    # but the Dockerfile handles it correctly.
+    envVars:
+      - key: PORT
+        value: 8080
+
+  # 2. FastAPI Backend
+  # A private service running the Python API and interacting with Endee and Groq.
+  - type: pserv
+    name: ai-backend-api
+    env: python
+    buildCommand: "cd examples/ai-document-summarizer && pip install -r requirements.txt"
+    startCommand: "cd examples/ai-document-summarizer && python -m backend.api"
+    envVars:
+      - key: ENDEE_URL
+        fromService:
+          type: pserv
+          name: endee-vector-db
+          envVarKey: RENDER_EXTERNAL_URL
+        # fallback to the expected internal render address format
+          # e.g., http://endee-vector-db:8080/api/v1
+      - key: PORT
+        value: 8000
+      - key: PYTHON_VERSION
+        value: "3.12.0"
+      - key: GROQ_API_KEY
+        sync: false # Must be set manually in the Render Dashboard
+
+  # 3. Gradio Frontend
+  # The public web service containing the UI.
+  - type: web
+    name: ai-document-summarizer-ui
+    env: python
+    buildCommand: "cd examples/ai-document-summarizer && pip install -r requirements.txt"
+    startCommand: "cd examples/ai-document-summarizer && python frontend/app.py"
+    envVars:
+      - key: API_BASE_URL
+        fromService:
+          type: pserv
+          name: ai-backend-api
+          envVarKey: RENDER_INTERNAL_HOSTNAME
+      - key: PORT
+        value: 7860
+      - key: PYTHON_VERSION
+        value: "3.12.0"
